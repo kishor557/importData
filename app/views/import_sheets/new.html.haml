@@ -1,0 +1,15 @@
+= form_with(model: @import_sheet, local: true, multipart: true) do |form|
+  - if @import_sheet.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@import_sheet.errors.count, "error")
+        prohibited this record from being saved:
+      %ul
+        - @import_sheet.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = form.label :sheet
+    = form.file_field :sheet
+  %br
+  .actions
+    = form.submit
